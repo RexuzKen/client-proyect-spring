@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import clientproyectspring.clientproyectspring.exceptions.ClientNotFoundException;
 import clientproyectspring.clientproyectspring.models.entity.Client;
 import clientproyectspring.clientproyectspring.models.repository.ClientRepository;
 import clientproyectspring.clientproyectspring.models.service.IClientService;
@@ -29,7 +30,7 @@ public class ClientServiceImpl implements IClientService {
 	@Override
 	public Client update(Long id, Client client) {
 		clientRepository.findById(id)
-			.orElseThrow(() -> new RuntimeException("Client not found"));
+			.orElseThrow(() -> new ClientNotFoundException("id", id.toString()));
 		client.setId(id);
 		return clientRepository.save(client);
 	}
@@ -37,7 +38,7 @@ public class ClientServiceImpl implements IClientService {
 	@Override
 	public void delete(Long id) {
 		clientRepository.findById(id)
-			.orElseThrow(() -> new RuntimeException("Cliente not found"));
+			.orElseThrow(() -> new ClientNotFoundException("id" , id.toString()));
 		clientRepository.deleteById(id);	
 	}
 
