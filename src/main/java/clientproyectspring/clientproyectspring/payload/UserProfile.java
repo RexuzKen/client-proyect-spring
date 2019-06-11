@@ -1,14 +1,15 @@
 package clientproyectspring.clientproyectspring.payload;
 
 import java.time.Instant;
+import java.util.Date;
 
 public class UserProfile {
     private Long id;
     private String username;
     private String name;
-    private Instant joinedAt;
+    private Date joinedAt;
 
-    public UserProfile(Long id, String username, String name, Instant joinedAt) {
+    public UserProfile(Long id, String username, String name, Date joinedAt) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -39,11 +40,11 @@ public class UserProfile {
         this.name = name;
     }
 
-    public Instant getJoinedAt() {
+    public Date getJoinedAt() {
         return joinedAt;
     }
 
-    public void setJoinedAt(Instant joinedAt) {
+    public void setJoinedAt(Date joinedAt) {
         this.joinedAt = joinedAt;
     }
 
