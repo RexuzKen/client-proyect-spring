@@ -61,7 +61,6 @@ public class AuthController {
                 )
         );
         
-        System.out.println("Ola");
         
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

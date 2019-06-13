@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by rajeevkumarsingh on 19/08/17.
@@ -29,11 +31,15 @@ public class JwtTokenProvider {
 
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
-
+        
+    
         return Jwts.builder()
                 .setSubject(Long.toString(userPrincipal.getId()))
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
+                .claim("user", userPrincipal.getUsername())
+                .claim("name", userPrincipal.getName())               
+                .claim("roles", userPrincipal.getAuthorities())
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }

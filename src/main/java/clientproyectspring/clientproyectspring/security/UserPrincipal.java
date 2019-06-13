@@ -113,4 +113,12 @@ public class UserPrincipal implements UserDetails {
 
         return Objects.hash(id);
     }
+
+	@Override
+	public String toString() {
+		return "UserPrincipal [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email
+				+ ", password=" + password + ", authorities=" + authorities + "]";
+	}
+    
+    
 }
