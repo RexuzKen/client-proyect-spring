@@ -2,22 +2,22 @@ package clientproyectspring.clientproyectspring.exceptions;
 
 public class ErrorMessage {
 	
-	private String exception;
+	private String error;
 	private String message;
 	private String path;
 	
 	public ErrorMessage(Exception ex, String path) {
-		this.exception = ex.getClass().getSimpleName();
+		this.error = ex.getClass().getSimpleName();
 		this.message = ex.getMessage();
 		this.path = path;
 	}
 
-	public String getException() {
-		return exception;
+	public String getError() {
+		return error;
 	}
 
-	public void setException(String exception) {
-		this.exception = exception;
+	public void setError(String error) {
+		this.error = error;
 	}
 
 	public String getMessage() {

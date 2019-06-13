@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 
 @MappedSuperclass
@@ -20,7 +19,12 @@ import java.util.Date;
 )
 public abstract class DateAudit implements Serializable {
 
-    @CreatedDate
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6318154179603592200L;
+
+	@CreatedDate
     @Column(updatable =  false)
     private Date createdAt;
 

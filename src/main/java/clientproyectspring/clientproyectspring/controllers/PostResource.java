@@ -34,7 +34,6 @@ public class PostResource {
 	}
 
 	@GetMapping("/me")
-	@PreAuthorize("hasRole('USER')")
 	public Page<Post> findAllCreatedBy(@CurrentUser UserPrincipal currentUser, 
 			@RequestParam(name = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
 			@RequestParam(name = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size){
@@ -42,19 +41,16 @@ public class PostResource {
 	}
 	
 	@PostMapping
-	@PreAuthorize("hasRole('USER')")
 	public Post save(@RequestBody Post post){
 		return postService.save(post);
 	}
 	
 	@PutMapping("/{postId}")
-	@PreAuthorize("hasRole('USER')")
 	public Post update(@PathVariable Long postId, @RequestBody Post post){
 		return postService.update(postId, post);
 	}
 	
-	@DeleteMapping("{postId}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@DeleteMapping("/{postId}")
 	public void delete(@PathVariable Long postId){
 		postService.delete(postId);
 	}

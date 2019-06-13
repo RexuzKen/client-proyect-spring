@@ -60,7 +60,9 @@ public class AuthController {
                         loginRequest.getPassword()
                 )
         );
-
+        
+        System.out.println("Ola");
+        
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);

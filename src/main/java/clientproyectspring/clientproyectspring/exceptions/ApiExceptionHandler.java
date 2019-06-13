@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
-/*
+
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler({
-            UnauthorizedException.class,
-            org.springframework.security.access.AccessDeniedException.class
+    @ExceptionHandler({         
+            org.springframework.security.access.AccessDeniedException.class,
+            
     })
     @ResponseBody
     public void unauthorizedRequest(HttpServletRequest request, Exception exception) {
         //Empty. Nothing to do
     }
     
+    /*    
         @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler({
             //ConflictException.class
@@ -48,8 +49,8 @@ public class ApiExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({
             NotFoundException.class,
-            ClientNotFoundException.class,
-            UsernameNotFoundException.class
+            UsernameNotFoundException.class,
+            clientproyectspring.clientproyectspring.exceptions.ResourceNotFoundException.class
     })
     @ResponseBody
     public ErrorMessage notFoundRequest(HttpServletRequest request, Exception exception) {
@@ -64,7 +65,8 @@ public class ApiExceptionHandler {
             org.springframework.web.bind.MethodArgumentNotValidException.class,
             org.springframework.web.bind.MissingServletRequestParameterException.class,
             org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class,
-            org.springframework.http.converter.HttpMessageNotReadableException.class
+            org.springframework.http.converter.HttpMessageNotReadableException.class,
+            org.springframework.security.authentication.BadCredentialsException.class
     })
     @ResponseBody
     public ErrorMessage badRequest(HttpServletRequest request, Exception exception) {
