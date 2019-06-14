@@ -42,10 +42,10 @@ public class UserController {
     }
 
     
-    @GetMapping("/users/{username}")
-    public UserProfile getUserProfile(@PathVariable(value = "username") String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
+    @GetMapping("/users/{id}")
+    public UserProfile getUserProfile(@PathVariable(value = "id") Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
 
         //long pollCount = pollRepository.countByCreatedBy(user.getId());
         //long voteCount = voteRepository.countByUserId(user.getId());
