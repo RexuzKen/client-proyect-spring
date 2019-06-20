@@ -7,21 +7,22 @@ import javax.validation.constraints.*;
  */
 
 public class SignUpRequest {
-    @NotBlank
-    @Size(min = 4, max = 40)
+	
+    @NotBlank(message = "Nombre requerido.")
+    @Size(min = 3, max = 40, message = "Nombre debe contener entre 3 a 40 caracteres.")
     private String name;
 
-    @NotBlank
-    @Size(min = 3, max = 15)
+    @NotBlank(message = "Username requerido.")
+    @Size(min = 3, max = 15, message = "Username debe contener entre 3 a 15 caracteres.")
     private String username;
 
-    @NotBlank
-    @Size(max = 40)
-    @Email
+    @NotBlank(message = "Email requerido.")
+    @Size(max = 40, message = "Email debe contener un maximo de 40 caracteres.")
+    @Email(message = "Email invalido.")
     private String email;
 
-    @NotBlank
-    @Size(min = 6, max = 20)
+    @NotBlank(message = "Password requerida.")
+    @Size(min = 6, max = 20, message = "Password debe contener entre 6 y 20 caracteres.")
     private String password;
 
     public String getName() {

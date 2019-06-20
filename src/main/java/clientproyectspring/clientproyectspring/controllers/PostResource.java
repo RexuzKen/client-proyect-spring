@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import clientproyectspring.clientproyectspring.models.entity.Post;
 import clientproyectspring.clientproyectspring.models.service.IPostService;
+import clientproyectspring.clientproyectspring.payload.PostResponse;
 import clientproyectspring.clientproyectspring.security.CurrentUser;
 import clientproyectspring.clientproyectspring.security.UserPrincipal;
 import clientproyectspring.clientproyectspring.util.AppConstants;
@@ -29,12 +30,12 @@ public class PostResource {
 	private IPostService postService;
 	
 	@GetMapping
-	public List<Post> findAll(){
+	public List<PostResponse> findAll(){
 		return postService.findAll();
 	}
 
 	@GetMapping("/me")
-	public Page<Post> findAllCreatedBy(@CurrentUser UserPrincipal currentUser, 
+	public Page<PostResponse> findAllCreatedBy(@CurrentUser UserPrincipal currentUser, 
 			@RequestParam(name = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
 			@RequestParam(name = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size){
 		return postService.findAllCreatedBy(currentUser, page, size);

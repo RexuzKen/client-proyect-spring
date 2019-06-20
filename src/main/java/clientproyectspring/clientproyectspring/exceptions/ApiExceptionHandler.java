@@ -1,14 +1,21 @@
 package clientproyectspring.clientproyectspring.exceptions;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
@@ -62,7 +69,7 @@ public class ApiExceptionHandler {
             BadRequestException.class,
             org.springframework.dao.DuplicateKeyException.class,
             org.springframework.web.HttpRequestMethodNotSupportedException.class,
-            org.springframework.web.bind.MethodArgumentNotValidException.class,
+            MethodArgumentNotValidException.class,
             org.springframework.web.bind.MissingServletRequestParameterException.class,
             org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class,
             org.springframework.http.converter.HttpMessageNotReadableException.class,
@@ -70,8 +77,19 @@ public class ApiExceptionHandler {
     })
     @ResponseBody
     public ErrorMessage badRequest(HttpServletRequest request, Exception exception) {
+    	
+    	if (exception instanceof MethodArgumentNotValidException) {   		
+    		String message = ""; 
+    		BindingResult br  = ((MethodArgumentNotValidException)exception).getBindingResult();
+  	
+    		for (FieldError error : br.getFieldErrors()) {
+				message += error.getDefaultMessage();
+			}
+    		return new ErrorMessage(exception.getClass().getSimpleName(), message, request.getRequestURI());
+    	}
         return new ErrorMessage(exception, request.getRequestURI());
     }
+    
 
 
 

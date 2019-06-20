@@ -11,6 +11,12 @@ public class ErrorMessage {
 		this.message = ex.getMessage();
 		this.path = path;
 	}
+	
+	public ErrorMessage(String error, String message, String path) {
+		this.error = error;
+		this.message = message;
+		this.path = path;
+	}
 
 	public String getError() {
 		return error;
